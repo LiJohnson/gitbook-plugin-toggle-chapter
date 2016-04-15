@@ -1,0 +1,16 @@
+.summary > li.chapter  > a >.fa{
+	opacity: 0.2;
+	float: right;
+}
+.summary > li.chapter  > a > .fa:hover{
+	opacity: 0.8;
+}
+.summary .hidden-con .fa{
+	float: right;
+}
+.summary .hidden-con li.item{
+	display: none;
+}
+.summary .hidden-con .show li.item{
+	display: list-item;
+}

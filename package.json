@@ -1,0 +1,14 @@
+{
+	"name": "gitbook-plugin-lcs",
+	"version": "1.0.0",
+	"description": "gitbook plugin for summary bar",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"engines": {
+		"gitbook": ">=2.5.0"
+	},
+	"author": "LiJohnson",
+	"license": "ISC"
+}
