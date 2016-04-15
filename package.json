@@ -1,5 +1,5 @@
 {
-	"name": "gitbook-plugin-lcs",
+	"name": "gitbook-plugin-toggle-chapter",
 	"version": "1.0.0",
 	"description": "gitbook plugin for toggle chapter",
 	"main": "index.js",
