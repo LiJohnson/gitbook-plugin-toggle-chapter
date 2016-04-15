@@ -5,17 +5,19 @@ require(['jquery'],function($){
 	var toggleItem = (function(){
 		var map = JSON.parse(localStorage.chapter||"{}")||{}
 
-		return function(index,hide){
-			index >= 0 && (map[index] = !!hide);
+		return function(level,hide){
+			level >= 0 && (map[level] = !!hide);
 
 			$hiddenCon.find('li.item').remove();
 			$chapter.show();
 
-			$.each(map,function(index,hide){
+			$.each(map,function(level,hide){
 				if(!hide)return;
 
-				$chapter.eq(index).hide();
-				$hiddenCon.append($('<li class="item" ></li>').data('index',index).append('<a href="javascript:;" >' + $chapter.eq(index).find('>a').text() + '<i class="fa fa fa-eye"></i></a>'));
+				var $item = $chapter.filter('[data-level='+level+']');
+				console.log(level,$item);
+				$item.hide();
+				$hiddenCon.append($('<li class="item" ></li>').data('level',level).append('<a href="javascript:;" >' + $item.find('>a').text() + '<i class="fa fa fa-eye"></i></a>'));
 
 			});
 
@@ -27,14 +29,13 @@ require(['jquery'],function($){
 
 	$chapter.on('click','a > i' , function(e){
 		var $this = $(this).parents('li:eq(0)');
-		var index = $chapter.index($this);
-		toggleItem(index,true);
+		toggleItem($this.data("level"),true);
 		return false;
 	});
 
 	$hiddenCon.on('click',':not(.toggle) a',function(){
 		var $this = $(this).parent();
-		toggleItem($this.data('index'),false);
+		toggleItem($this.data('level'),false);
 	}).on('click','.toggle a',function(){
 		$(this).find('.fa').toggleClass('fa-angle-double-down');
 		$hiddenCon.toggleClass('show');
