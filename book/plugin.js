@@ -1,6 +1,6 @@
 require(['gitbook','jquery'],function(gitbook,$){
 
-	gitbook.events.bind("page.change",function(){
+	var init = function(){
 		var $chapter = $('.summary > li.chapter');
 		var $hiddenCon = $('<ul><li class="toggle" ><a href="javascript:;" > <i class="fa fa-angle-double-up fa-angle-double-down"></i></a></li></ul>').appendTo( $('<li class="hidden-con"></li>').appendTo($('.summary')));
 		var toggleItem = (function(){
@@ -15,7 +15,7 @@ require(['gitbook','jquery'],function(gitbook,$){
 				$.each(map,function(level,hide){
 					if(!hide)return;
 
-					var $item = $chapter.filter('[data-level='+level+']');
+					var $item = $chapter.filter('[data-level="'+level+'"]');
 					console.log(level,$item);
 					$item.hide();
 					$hiddenCon.append($('<li class="item" ></li>').data('level',level).append('<a href="javascript:;" >' + $item.find('>a').text() + '<i class="fa fa fa-eye"></i></a>'));
@@ -43,6 +43,9 @@ require(['gitbook','jquery'],function(gitbook,$){
 		});
 
 		toggleItem(-1);
-	});
+	};
+
+	gitbook.events.on('page.change',init);
+	gitbook.events.on('load',init);
 
 });
